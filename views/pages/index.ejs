@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/head'); %>
+    </head>
+    <body>
+        <header>
+            <%- include('../partials/header'); %>
+        </header>
+
+        <main class="p-10 w-full">
+            <div class="text-center">
+                <h3 class="text-3xl font-bold dark:text-white">Welcome back <%= user.firstname %> !</h3>
+            </div>
+            <div class="mt-14 flex flex-col items-center md:items-stretch">
+                <h4 class="text-2xl font-bold dark:text-white">Latest posts</h4>
+                <% if (latestPosts.length === 0) {%>
+                    <div class="w-full text-center mt-12">
+                        <h4 class="text-2xl font-bold dark:text-white">No posts</h4>
+                    </div>
+                <% } else { %>
+                    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
+                        <% latestPosts.forEach(function(post) { %>
+                            <%- include('../partials/postCard', {post: post}) %>
+                        <% }); %>
+                    </div>
+                <% } %>
+            </div>
+        </main>
+    </body>
+</html>

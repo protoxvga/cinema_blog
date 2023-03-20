@@ -1,0 +1,32 @@
+<nav class="px-2 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+    <div class="container flex flex-wrap items-center justify-between mx-auto mt-2">
+        <a href="/home" class="flex items-center">
+            <h3 class="text-lg font-bold dark:text-white">Cinema blog</h3>
+        </a>
+        <button data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+        </button>
+        <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
+            <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <li>
+                <a href="/home" class="block py-2 pl-3 pr-4 <%= originalUrl === '/home' ? 'hover:text-emerald-900' : 'hover:text-gray-900' %> <%= originalUrl === '/home' ? 'text-emerald-700' : 'text-gray-700' %> rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Home</a>
+            </li>
+            <li>
+                <a href="/cinema" class="block py-2 pl-3 pr-4 <%= originalUrl === '/cinema' ? 'hover:text-emerald-900' : 'hover:text-gray-900' %> <%= originalUrl === '/cinema' ? 'text-emerald-700' : 'text-gray-700' %> rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Cinema</a>
+            </li>
+            <li>
+                <a href="/tvShows" class="block py-2 pl-3 pr-4 <%= originalUrl === '/cinema' ? 'hover:text-emerald-900' : 'hover:text-gray-900' %> <%= originalUrl === '/cinema' ? 'text-emerald-700' : 'text-gray-700' %> rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">TV shows</a>
+            </li>
+            <% if (user.role === "admin") { %>
+                <li>
+                    <a href="/admin/create-post" class="block py-2 pl-3 pr-4 <%= originalUrl === '/admin/create-post' ? 'hover:text-emerald-900' : 'hover:text-gray-900' %> <%= originalUrl === '/admin/create-post' ? 'text-emerald-700' : 'text-gray-700' %> rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Create post</a>
+                </li>
+            <% } %>
+            <li>
+                <a href="/logout" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Logout</a>
+            </li>
+            </ul>
+        </div>
+    </div>
+</nav>
