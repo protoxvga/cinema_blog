@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/head'); %>
+    </head>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <body>
+        <main class="p-10 w-full">
+            <h3 class="antialiased text-center text-3xl font-bold dark:text-white"><%= post.title %></h3>
+            <p class="antialiased text-center text-xl mt-5 dark:text-white"><%= post.created_at.toLocaleString() %> | <%= post.author.fullname %></p>
+            <div class="mt-10 p-10">
+                <% post.content.split(/\r?\n/).map(part => { %>
+                    <p class="antialiased tracking-wide"><%= part %><br /></p>
+                <% }) %>
+            </div>
+            <%- include('../partials/commentSection'); %>
+        </main>
+    </body>
+</html>

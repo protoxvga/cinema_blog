@@ -2,6 +2,7 @@ const express = require("express");
 
 const authRoutes = require("./auth.routes");
 const homeRoutes = require("./home.routes");
+const postRoutes = require("./post.routes");
 const adminRoutes = require("./admin.routes");
 
 const checkUser = require('../middlewares/checkUser');
@@ -11,6 +12,7 @@ const router = express.Router();
 
 router.use(authRoutes);
 router.use(checkUser, homeRoutes);
+router.use(checkUser, postRoutes);
 router.use('/admin', checkAdmin, adminRoutes);
 
 router.get('/', function (req, res) {

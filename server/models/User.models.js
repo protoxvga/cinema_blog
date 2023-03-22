@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// Create Model
 const Schema = mongoose.Schema;
 
 const User = new Schema({
@@ -25,6 +24,13 @@ const User = new Schema({
         enum: ['admin', 'user'],
         required: true,
     }
+}, {
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true }
+});
+
+User.virtual('fullname').get(function() {
+    return this.firstname + ' ' + this.lastname;
 });
 
 module.exports = mongoose.model('userData', User, 'userData');

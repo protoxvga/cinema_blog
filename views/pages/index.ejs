@@ -15,12 +15,36 @@
             <div class="mt-14 flex flex-col items-center md:items-stretch">
                 <h4 class="text-2xl font-bold dark:text-white">Latest posts</h4>
                 <% if (latestPosts.length === 0) {%>
-                    <div class="w-full text-center mt-12">
+                    <div class="w-full text-center mt-10">
                         <h4 class="text-2xl font-bold dark:text-white">No posts</h4>
                     </div>
                 <% } else { %>
                     <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
                         <% latestPosts.forEach(function(post) { %>
+                            <%- include('../partials/postCard', {post: post}) %>
+                        <% }); %>
+                    </div>
+                <% } %>
+                <h4 class="text-2xl mt-14 font-bold dark:text-white">Cinema news</h4>
+                <% if (cinemaPosts.length === 0) {%>
+                    <div class="w-full text-center mt-10">
+                        <h4 class="text-2xl font-bold dark:text-white">No posts</h4>
+                    </div>
+                <% } else { %>
+                    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
+                        <% cinemaPosts.forEach(function(post) { %>
+                            <%- include('../partials/postCard', {post: post}) %>
+                        <% }); %>
+                    </div>
+                <% } %>
+                <h4 class="text-2xl mt-14 font-bold dark:text-white">TV Shows news</h4>
+                <% if (tvShowPosts.length === 0) {%>
+                    <div class="w-full text-center mt-10">
+                        <h4 class="text-2xl font-bold dark:text-white">No posts</h4>
+                    </div>
+                <% } else { %>
+                    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
+                        <% tvShowPosts.forEach(function(post) { %>
                             <%- include('../partials/postCard', {post: post}) %>
                         <% }); %>
                     </div>

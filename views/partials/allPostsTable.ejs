@@ -1,0 +1,41 @@
+<% if (allPosts.length === 0) {%>
+    <div class="w-full text-center mt-12">
+        <h4 class="text-2xl font-bold dark:text-white">No posts created yet</h4>
+    </div>
+<% } else { %>
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-10">
+            <thead class="w-full text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th class="min-w-max px-6 py-3">Date</th>
+                    <th class="min-w-max px-6 py-3">Title</th>
+                    <th class="min-w-max px-6 py-3">Content</th>
+                    <th class="min-w-max px-6 py-3">Category</th>
+                    <th class="min-w-max px-6 py-3">Author</th>
+                    <th class="min-w-max px-6 py-3">Edit</th>
+                    <th class="min-w-max px-6 py-3">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% allPosts.forEach(function(post) { %>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td class="px-6 py-4 whitespace-nowrap"><%= post.created_at.toLocaleString() %></td>
+                        <td class="px-6 py-4 whitespace-nowrap"><%= post.title.substring(0, 30) + "..." %></td>
+                        <td class="px-6 py-4 whitespace-nowrap"><%= post.content.substring(0, 20) + "..." %></td>
+                        <td class="px-6 py-4 whitespace-nowrap"><%= post.category === 'cinema' ? 'Cinema' : 'TV Show' %></td>
+                        <td class="px-6 py-4 whitespace-nowrap"><%= post.author.email %></td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <a href="/admin/edit-post/<%= post.id %>" class="text-emerald-600 hover:text-emerald-900">Edit</a>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <form action="/admin/delete-post" method="POST">
+                                <input type="hidden" name="postId" value="<%= post.id %>">
+                                <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+<% } %>

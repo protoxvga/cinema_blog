@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
+const Comment = require('./Comment.models');
 
-// Create Model
 const Schema = mongoose.Schema;
 
 const Post = new Schema({
@@ -23,8 +23,9 @@ const Post = new Schema({
     },
     created_at: {
         type: Date,
-        default: new Date(),
-    }
+        required: true,
+    },
+    comments: [Comment.schema],
 });
 
 module.exports = mongoose.model('posts', Post, 'posts');
