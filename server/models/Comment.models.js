@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// Create Model
+// Create Model for Comment
 const Schema = mongoose.Schema;
 
 const Comment = new Schema({

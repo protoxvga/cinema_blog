@@ -1,3 +1,5 @@
+// Description: Middleware to check if the user is an admin
+
 function checkAdmin(req, res, next) {
     if (req.session && req.session.user) {
         if (req.session.user.role === 'admin')

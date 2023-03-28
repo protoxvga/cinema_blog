@@ -18,7 +18,7 @@
             <li>
                 <a href="/tv-shows" class="block py-2 pl-3 pr-4 <%= originalUrl === '/tv-shows' ? 'hover:text-emerald-900' : 'hover:text-gray-900' %> <%= originalUrl === '/tv-shows' ? 'text-emerald-700' : 'text-gray-700' %> rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">TV shows</a>
             </li>
-            <% if (user.role === "admin") { %>
+            <% if (user?.role === "admin") { %>
                 <li>
                     <a href="/admin/admin-posts" class="block py-2 pl-3 pr-4 <%= originalUrl === '/admin/admin-posts' ? 'hover:text-emerald-900' : 'hover:text-gray-900' %> <%= originalUrl === '/admin/admin-posts' ? 'text-emerald-700' : 'text-gray-700' %> rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Admin posts</a>
                 </li>
@@ -26,9 +26,15 @@
                     <a href="/admin/admin-users" class="block py-2 pl-3 pr-4 <%= originalUrl === '/admin/admin-users' ? 'hover:text-emerald-900' : 'hover:text-gray-900' %> <%= originalUrl === '/admin/admin-users' ? 'text-emerald-700' : 'text-gray-700' %> rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Admin users</a>
                 </li>
             <% } %>
-            <li>
-                <a href="/logout" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Logout</a>
-            </li>
+            <% if (user) { %>
+                <li>
+                    <a href="/logout" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Logout</a>
+                </li>
+            <% } else { %>
+                <li>
+                    <a href="/login" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Login</a>
+                </li>
+            <% } %>
             </ul>
         </div>
     </div>

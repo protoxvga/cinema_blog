@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+// User Schema
 const User = new Schema({
     firstname: {
         type: String,
@@ -29,6 +30,7 @@ const User = new Schema({
     toJSON: { virtuals: true }
 });
 
+// Virtuals for user fullname
 User.virtual('fullname').get(function() {
     return this.firstname + ' ' + this.lastname;
 });

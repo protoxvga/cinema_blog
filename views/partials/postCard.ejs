@@ -1,10 +1,10 @@
-<div class="relative min-w-full min-h-max pb-16 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-    <a href="#">
-        <img class="rounded-t-lg" src="<%= post.banner %>" alt="" />
+<div class="relative min-w-full min-h-max pb-16 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <a href="/post/<%= post.id %>">
+        <img class="rounded-t-lg max-h-40 object-cover min-w-full" src="<%= post.banner %>" alt="" />
     </a>
     <div class="p-5">
         <a href="/post/<%= post.id %>">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= post.title %></h5>
+            <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white"><%= post.title %></h5>
         </a>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= post.content.replace(/<\/?[^>]+>|&nbsp;/gi, ' ').substring(0, 100) + "..." %></p>
         <a href="/post/<%= post.id %>" class="absolute bottom-4 right-6 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-emerald-700 rounded-md hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800">
