@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../../partials/head'); %>
+    </head>
+    <header>
+        <%- include('../../partials/header'); %>
+    </header>
+    <body>
+        <main class="flex justify-center">
+            <div class="w-5/6 flex flex-col text-center">
+                <h3 class="text-3xl font-bold dark:text-white mt-10">Admin users</h3>
+                <div class="mt-8">
+                    <% if (params.edited || params.deleted || params.created) { %>
+                        <%- include('../../partials/alerts/successAlert', {message: params.edited ? "User edited successfully" : "User deleted successfully"}); %>
+                    <% } %>
+                </div>
+                <%- include('../../partials/tables/allUsersTable'); %>
+            </div>
+        </main>
+    </body>
+</html>

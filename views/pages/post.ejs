@@ -2,20 +2,33 @@
 <html lang="en">
     <head>
         <%- include('../partials/head'); %>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <header>
         <%- include('../partials/header'); %>
     </header>
     <body>
-        <main class="p-10 w-full">
-            <h3 class="antialiased text-center text-3xl font-bold dark:text-white"><%= post.title %></h3>
-            <p class="antialiased text-center text-xl mt-5 dark:text-white"><%= post.created_at.toLocaleString() %> | <%= post.author.fullname %></p>
-            <div class="mt-10 p-10">
-                <% post.content.split(/\r?\n/).map(part => { %>
-                    <p class="antialiased tracking-wide"><%= part %><br /></p>
-                <% }) %>
+        <main class="w-full">
+            <div class="banner w-full h-96 bg-black bg-opacity-70 flex justify-center items-center relative bg-cover bg-center" style="background-image: url('<%= post.banner %>');">
+                <div class="w-full banner-overlay absolute inset-0 bg-black opacity-60"></div>
+                <div class="banner-text absolute top-1/2 transform -translate-y-1/2 text-white text-center">
+                    <h3 class="antialiased text-3xl font-bold dark:text-white"><%= post.title %></h3>
+                    <p class="antialiased text-xl mt-4 dark:text-white"><%= post.author.fullname %></p>
+                    <p class="antialiased text-xl mt-10 dark:text-white"><%= post.created_at.toLocaleString() %></p>
+                </div>
+            </div>
+            <div class="mt-10 p-10 w-full post-content">
+                <%- post.content %>
             </div>
             <%- include('../partials/commentSection'); %>
         </main>
+        <script>
+            $(document).ready(function() {
+                $('.post-content h1').addClass('text-4xl font-extrabold dark:text-white');
+                $('.post-content h2').addClass('text-2xl font-extrabold dark:text-white');
+                $('.post-content h3').addClass('text-xl font-extrabold dark:text-white');
+                $('.post-content a').addClass('font-medium text-blue-600 dark:text-blue-500 hover:underline');
+            });
+        </script>
     </body>
 </html>

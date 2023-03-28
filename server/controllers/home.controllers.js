@@ -3,10 +3,10 @@ const Post = require("../models/Post.models");
 exports.homePage = async (req, res) => {
     const posts = await Post.find()
     .sort({ created_at: -1 })
-    .populate('author', 'firstname lastname fullname');
+    .populate('author', 'firstname lastname fullname banner');
 
     const latestPosts = posts
-    .slice(0, 3);
+    .slice(0, 6);
 
     const cinemaPosts = posts
     .filter((post) => post.category === "cinema")
@@ -28,7 +28,7 @@ exports.homePage = async (req, res) => {
 exports.cinemaPage = async (req, res) => {
     const postsData = await Post.find()
     .sort({ created_at: -1 })
-    .populate('author', 'firstname lastname fullname');
+    .populate('author', 'firstname lastname fullname banner');
     
     const posts = postsData
     .filter((post) => post.category === "cinema");
@@ -43,7 +43,7 @@ exports.cinemaPage = async (req, res) => {
 exports.tvShowsPage = async (req, res) => {
     const postsData = await Post.find()
     .sort({ created_at: -1 })
-    .populate('author', 'firstname lastname fullname');
+    .populate('author', 'firstname lastname fullname banner');
     
     const posts = postsData
     .filter((post) => post.category === "tvShow");

@@ -1,9 +1,9 @@
 <div class="relative min-w-full min-h-max p-6 pb-16 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <a href="#">
+    <a href="/post/<%= post.id %>">
         <h3 class="antialiased mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= post.title %></h3>
         <p class="antialiased text-gray-600 italic"><%= post.created_at.toLocaleString() %></p>
     </a>
-    <p class="antialiased mb-3 mt-3 font-normal"><%= post.content.substring(0, 100) + "..." %></p>
+    <p class="antialiased mb-3 mt-3 font-normal"><%= post.content.replace(/<\/?[^>]+>/gi, ' ').substring(0, 100) + "..." %></p>
     <p class="antialiased absolute bottom-4 left-6"><%= post.author.fullname %></p>
     <a href="/post/<%= post.id %>" class="absolute bottom-4 right-6 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-emerald-700 rounded-md hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800">
         Read more

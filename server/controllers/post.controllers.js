@@ -4,7 +4,7 @@ const Comment = require('../models/Comment.models');
 exports.postPage = async (req, res) => {
     try {
         const post = await Post.findById(req.params.id)
-        .populate('author', 'firstname lastname fullname')
+        .populate('author', 'firstname lastname fullname banner')
         .populate({
             path: 'comments',
             populate: {
@@ -30,10 +30,6 @@ exports.publishComment = async (req, res) => {
         const post = await Post.findById(req.params.id);
         const user = req.session.user;
 
-        if (!post) {
-            return res.status(404).redirect('404');
-        }
-
         const comment = new Comment({
             content: content,
             author: user.id,
@@ -51,3 +47,25 @@ exports.publishComment = async (req, res) => {
         })
     }
 }
+
+exports.deleteComment = async (req, res) => {
+    const postId = req.params.id;
+    const commentId = req.body.commentId;
+
+    try {
+        const post = await Post.findByIdAndUpdate(postId, {$pull: {comments: {_id: commentId}}});
+        if (!post) {
+            return res.status(404).render('pages/errors/404', {
+                user: req.session.user,
+                originalUrl: req.originalUrl,
+            });
+        }
+        res.status(200).redirect(`/post/${postId}`);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).render('pages/errors/500', {
+            user: req.session.user,
+            originalUrl: req.originalUrl,
+        });
+    }
+};

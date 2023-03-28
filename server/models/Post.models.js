@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
-const Comment = require('./Comment.models');
 
 const Schema = mongoose.Schema;
+const Comment = require('./Comment.models')
 
 const Post = new Schema({
     title: {
+        type: String,
+        required: true,
+    },
+    banner: {
         type: String,
         required: true,
     },

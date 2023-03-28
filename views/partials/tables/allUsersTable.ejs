@@ -1,0 +1,30 @@
+<div class="overflow-x-auto">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-10">
+        <thead class="w-full text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th class="min-w-max px-6 py-3">Role</th>
+                <th class="min-w-max px-6 py-3">First name</th>
+                <th class="min-w-max px-6 py-3">Last name</th>
+                <th class="min-w-max px-6 py-3">Email</th>
+                <!-- <th class="min-w-max px-6 py-3">Edit</th> -->
+                <th class="min-w-max px-6 py-3">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% allUsers.forEach(function(user) { %>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <td class="px-6 py-4 whitespace-nowrap"><%= user.role %></td>
+                    <td class="px-6 py-4 whitespace-nowrap"><%= user.firstname %></td>
+                    <td class="px-6 py-4 whitespace-nowrap"><%= user.lastname %></td>
+                    <td class="px-6 py-4 whitespace-nowrap"><%= user.email %></td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <form action="/admin/delete-user" method="POST">
+                            <input type="hidden" name="userId" value="<%= user._id %>">
+                            <button <% if (user.role === 'admin') { %>disabled<% } %> type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>
