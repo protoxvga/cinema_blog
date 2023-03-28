@@ -15,12 +15,12 @@ router.route('/create-post')
 
 router.route('/edit-post/:id')
 .get(adminControllers.editPostPage)
-.post(adminControllers.editPostRequest);
+.put(adminControllers.editPostRequest);
 
 router.route('/delete-post')
-.post(adminControllers.deletePostRequest);
+.delete(adminControllers.deletePostRequest);
 
 router.route('/delete-user')
-.post(adminControllers.deleteUserRequest);
+.delete(adminControllers.deleteUserRequest);
 
 module.exports = router;

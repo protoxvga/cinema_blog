@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <%- include('../partials/head'); %>
+        <title>Cinema Blog | Post</title>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <header>
@@ -28,6 +29,8 @@
                 $('.post-content h2').addClass('text-2xl font-extrabold dark:text-white');
                 $('.post-content h3').addClass('text-xl font-extrabold dark:text-white');
                 $('.post-content a').addClass('font-medium text-blue-600 dark:text-blue-500 hover:underline');
+                $('.post-content img').addClass('mx-auto');
+                $('.post-content iframe').addClass('mx-auto');
             });
         </script>
     </body>

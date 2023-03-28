@@ -2,11 +2,13 @@
 <html lang="en">
     <head>
         <%- include('../../partials/head'); %>
+        <title>Cinema Blog | Create Post</title>
     </head>
     <header>
         <%- include('../../partials/header'); %>
         <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
         <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/quilljs-markdown@latest/dist/quilljs-markdown.js"></script>
     </header>
     <body>
         <main class="flex justify-center">
@@ -46,13 +48,47 @@
                     toolbar: [
                         [{ 'header': [1, 2, 3, false] }],
                         ['bold', 'italic', 'underline', 'strike', 'link'],
+                        [{ 'video': true }, {'image': true}]
                     ]
                 },
             });
         
             quill.on('text-change', function(delta, oldDelta, source) {
-                document.getElementById("post-content").value = quill.root.innerHTML;
+                document.getElementById("post-content").value = quill.container.firstChild.innerHTML;
             });
+
+            quill.getModule("toolbar").addHandler("video", videoHandler);
+            quill.getModule("toolbar").addHandler("image", imageHandler);
+
+            function imageHandler() {
+                var range = this.quill.getSelection();
+                var value = prompt('please copy paste the image url here.');
+                if(value){
+                    this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
+                }
+            }
+
+            function videoHandler() {
+                let url = prompt("Enter Video URL: ");
+                url = getVideoUrl(url);
+                let range = quill.getSelection();
+                if (url != null) {
+                    quill.insertEmbed(range, 'video', url);
+                }
+            }
+
+            function getVideoUrl(url) {
+                let match = url.match(/^(?:(https?):\/\/)?(?:(?:www|m)\.)?youtube\.com\/watch.*v=([a-zA-Z0-9_-]+)/) ||
+                    url.match(/^(?:(https?):\/\/)?(?:(?:www|m)\.)?youtu\.be\/([a-zA-Z0-9_-]+)/) ||
+                    url.match(/^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#\&\?]*).*/);
+                if (match && match[2].length === 11) {
+                    return ('https') + '://www.youtube.com/embed/' + match[2] + '?showinfo=0';
+                }
+                if (match = url.match(/^(?:(https?):\/\/)?(?:www\.)?vimeo\.com\/(\d+)/)) { // eslint-disable-line no-cond-assign
+                    return (match[1] || 'https') + '://player.vimeo.com/video/' + match[2] + '/';
+                }
+                return null;
+            }
         </script>
     </body>
 </html>

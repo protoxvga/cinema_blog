@@ -1,12 +1,15 @@
-<div class="relative min-w-full min-h-max p-6 pb-16 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <a href="/post/<%= post.id %>">
-        <h3 class="antialiased mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= post.title %></h3>
-        <p class="antialiased text-gray-600 italic"><%= post.created_at.toLocaleString() %></p>
+<div class="relative min-w-full min-h-max pb-16 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+    <a href="#">
+        <img class="rounded-t-lg" src="<%= post.banner %>" alt="" />
     </a>
-    <p class="antialiased mb-3 mt-3 font-normal"><%= post.content.replace(/<\/?[^>]+>/gi, ' ').substring(0, 100) + "..." %></p>
-    <p class="antialiased absolute bottom-4 left-6"><%= post.author.fullname %></p>
-    <a href="/post/<%= post.id %>" class="absolute bottom-4 right-6 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-emerald-700 rounded-md hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800">
-        Read more
-        <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-    </a>
+    <div class="p-5">
+        <a href="/post/<%= post.id %>">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= post.title %></h5>
+        </a>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= post.content.replace(/<\/?[^>]+>|&nbsp;/gi, ' ').substring(0, 100) + "..." %></p>
+        <a href="/post/<%= post.id %>" class="absolute bottom-4 right-6 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-emerald-700 rounded-md hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800">
+            Read more
+            <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </a>
+    </div>
 </div>

@@ -18,7 +18,7 @@
                     <td class="px-6 py-4 whitespace-nowrap"><%= user.lastname %></td>
                     <td class="px-6 py-4 whitespace-nowrap"><%= user.email %></td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <form action="/admin/delete-user" method="POST">
+                        <form action="/admin/delete-user?_method=DELETE" method="POST">
                             <input type="hidden" name="userId" value="<%= user._id %>">
                             <button <% if (user.role === 'admin') { %>disabled<% } %> type="submit" class="text-red-600 hover:text-red-900">Delete</button>
                         </form>

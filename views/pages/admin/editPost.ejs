@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <%- include('../../partials/head'); %>
+        <title>Cinema Blog | Edit Post</title>
     </head>
     <header>
         <%- include('../../partials/header'); %>
@@ -13,7 +14,7 @@
         <main class="flex justify-center">
             <div class="w-5/6 flex flex-col text-center">
                 <h3 class="text-3xl font-bold dark:text-white mt-10">Edit post</h3>
-                <form action="/admin/edit-post/<%= post.id %>" method="POST" class="p-10 flex flex-col items-center">
+                <form action="/admin/edit-post/<%= post.id %>?_method=PUT" method="POST" class="p-10 flex flex-col items-center">
                     <div class="w-full max-w-3xl">
                         <label for="postTitle" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Post title</label>
                         <input required value="<%= post.title %>" type="text" id="post-title" name="postTitle" placeholder="Your post title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-emerald-500 dark:focus:border-emerald-500">
@@ -48,6 +49,7 @@
                     toolbar: [
                         [{ 'header': [1, 2, 3, false] }],
                         ['bold', 'italic', 'underline', 'strike', 'link'],
+                        [{ 'video': true }, {'image': true}]
                     ]
                 },
             });
@@ -57,6 +59,39 @@
             quill.on('text-change', function(delta, oldDelta, source) {
                 document.getElementById("post-content").value = quill.container.firstChild.innerHTML;
             });
+
+            quill.getModule("toolbar").addHandler("video", videoHandler);
+            quill.getModule("toolbar").addHandler("image", imageHandler);
+
+            function imageHandler() {
+                var range = this.quill.getSelection();
+                var value = prompt('please copy paste the image url here.');
+                if(value){
+                    this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
+                }
+            }
+
+            function videoHandler() {
+                let url = prompt("Enter Video URL: ");
+                url = getVideoUrl(url);
+                let range = quill.getSelection();
+                if (url != null) {
+                    quill.insertEmbed(range, 'video', url);
+                }
+            }
+
+            function getVideoUrl(url) {
+                let match = url.match(/^(?:(https?):\/\/)?(?:(?:www|m)\.)?youtube\.com\/watch.*v=([a-zA-Z0-9_-]+)/) ||
+                    url.match(/^(?:(https?):\/\/)?(?:(?:www|m)\.)?youtu\.be\/([a-zA-Z0-9_-]+)/) ||
+                    url.match(/^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#\&\?]*).*/);
+                if (match && match[2].length === 11) {
+                    return ('https') + '://www.youtube.com/embed/' + match[2] + '?showinfo=0';
+                }
+                if (match = url.match(/^(?:(https?):\/\/)?(?:www\.)?vimeo\.com\/(\d+)/)) { // eslint-disable-line no-cond-assign
+                    return (match[1] || 'https') + '://player.vimeo.com/video/' + match[2] + '/';
+                }
+                return null;
+            }
         </script>
     </body>
 </html>
